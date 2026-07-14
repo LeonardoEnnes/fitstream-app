@@ -7,7 +7,7 @@ export function Dashboard() {
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
         <p className="text-muted-foreground mt-1">
-          Sexta-feira, 10 de Julho de 2026
+          Sexta-feira, 10 de Julho de 2026 (mock dedata)
         </p>
       </div>
 
@@ -17,9 +17,9 @@ export function Dashboard() {
             <CardTitle className="text-sm font-medium">Calorias Consumidas</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">1,850 kcal</div>
+            <div className="text-2xl font-bold">1,850 kcal (mock)</div>
             <p className="text-xs text-muted-foreground mt-1">
-              Faltam 650 kcal para a meta
+              Faltam 650 kcal para a meta (Mock de ex)
             </p>
           </CardContent>
         </Card>
@@ -35,7 +35,7 @@ export function Dashboard() {
             <CardTitle>Consumo ao longo do dia</CardTitle>
           </CardHeader>
           <CardContent className="flex items-center justify-center h-64 text-muted-foreground border-dashed border-2 m-4 rounded-lg">
-            [ Área do Gráfico ]
+            [ Área do Gráfico mock ]
           </CardContent>
         </Card>
 
@@ -45,7 +45,7 @@ export function Dashboard() {
             <p className="text-xs text-muted-foreground">Live Feed (Kafka)</p>
           </CardHeader>
           <CardContent className="flex items-center justify-center h-64 text-muted-foreground">
-            [ Lista de Alertas ]
+            [ Lista de Alertas mock]
           </CardContent>
         </Card>
       </div>

@@ -9,7 +9,6 @@ export function AppLayout({ children }: AppLayoutProps) {
   return (
     <div className="flex h-screen w-full bg-background text-foreground overflow-hidden">
       
-      {/* SIDEBAR */}
       <aside className="w-64 border-r border-border bg-card flex flex-col">
         <div className="h-16 flex items-center px-6 border-b border-border">
           <Activity className="w-6 h-6 text-emerald-500 mr-2" />
@@ -32,7 +31,6 @@ export function AppLayout({ children }: AppLayoutProps) {
         </nav>
       </aside>
 
-      {/* ÁREA PRINCIPAL */}
       <main className="flex-1 flex flex-col overflow-hidden">
         <div className="flex-1 overflow-y-auto p-8">
           {children}

@@ -90,16 +90,16 @@
     --card-foreground: #FFFFFF;
     --popover: #252525;
     --popover-foreground: #FFFFFF;
-    --primary: #10B981; /* Nosso Verde Esmeralda */
+    --primary: #10B981;
     --primary-foreground: #FFFFFF;
     --secondary: #333333;
     --secondary-foreground: #FFFFFF;
     --muted: #333333;
     --muted-foreground: #A1A1AA;
-    --accent: #FF6B35; /* Nosso Laranja Alerta */
+    --accent: #FF6B35;
     --accent-foreground: #FFFFFF;
     --destructive: #EF4444;
-    --border: #333333; /* Nossas divisórias sutis */
+    --border: #333333;
     --input: #333333;
     --ring: #10B981;
 }
