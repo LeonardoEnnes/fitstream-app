@@ -1,4 +1,5 @@
 import { Activity, Apple, Dumbbell, LayoutDashboard, ChevronLeft, ChevronRight } from "lucide-react";
+import { NavLink } from "react-router-dom";
 
 interface SidebarProps {
   isMinimized: boolean;
@@ -29,20 +30,29 @@ export function Sidebar({ isMinimized, onToggle }: SidebarProps) {
 
       {/* navegacao */}
       <nav className="flex-1 p-4 space-y-2">
-        <SidebarItem icon={<LayoutDashboard size={20}/>} label="Dashboard" isMinimized={isMinimized} />
-        <SidebarItem icon={<Apple size={20}/>} label="Nutrição" isMinimized={isMinimized} />
-        <SidebarItem icon={<Dumbbell size={20}/>} label="Treinos" isMinimized={isMinimized} />
+        <SidebarItem to="/dashboard" icon={<LayoutDashboard size={20}/>} label="Dashboard" isMinimized={isMinimized} />
+        <SidebarItem to="/nutricao" icon={<Apple size={20}/>} label="Nutrição" isMinimized={isMinimized} />
+        <SidebarItem to="/treinos" icon={<Dumbbell size={20}/>} label="Treinos" isMinimized={isMinimized} />
       </nav>
     </aside>
   );
 }
 
 // Sub-componente auxiliar
-function SidebarItem({ icon, label, isMinimized }: { icon: any, label: string, isMinimized: boolean }) {
+function SidebarItem({ to, icon, label, isMinimized }: { to: string, icon: any, label: string, isMinimized: boolean }) {
   return (
-    <button className="flex w-full items-center gap-3 px-3 py-2 rounded-md hover:bg-secondary/50 transition-all text-muted-foreground">
+    <NavLink
+      to={to}
+      className={({ isActive }) =>
+        `flex w-full items-center gap-3 px-3 py-2 rounded-md transition-all ${
+          isActive 
+            ? "bg-primary/10 text-primary font-medium" 
+            : "hover:bg-secondary/50 text-muted-foreground"
+        }`
+      }
+    >
       {icon}
       {!isMinimized && <span>{label}</span>}
-    </button>
+    </NavLink>
   );
 }
