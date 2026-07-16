@@ -1,15 +1,12 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {PageHeader} from "@/components/layout/PageHeader";
 
 export function Dashboard() {
   return (
+    <>
     <div className="space-y-8">
       
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
-        <p className="text-muted-foreground mt-1">
-          Sexta-feira, 10 de Julho de 2026 (mock dedata)
-        </p>
-      </div>
+      <PageHeader title="Dashboard" description="Visão geral do seu progresso e estatísticas." />
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
@@ -50,5 +47,6 @@ export function Dashboard() {
         </Card>
       </div>
     </div>
+    </>
   );
 }
