@@ -7,7 +7,7 @@ export function AppRoutes() {
         <Routes>
             <Route path="/" element={<Navigate replace to="/dashboard" />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/nutrition" element={<NutritionPage />} />
+            <Route path="/nutricao" element={<NutritionPage />} />
         </Routes>
     )
 
