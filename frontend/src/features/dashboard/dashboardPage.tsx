@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {PageHeader} from "@/components/layout/PageHeader";
+import { PageHeader } from "../../components/layout/PageHeader";
 
 export function Dashboard() {
   return (
