@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {PageHeader} from "@/components/layout/PageHeader";
+import { MealForm } from "../../components/layout/MealForm";
 
 export function NutritionPage() {
   return (
@@ -10,18 +11,16 @@ export function NutritionPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
         <div className="space-y-6 lg:col-span-1">
-          
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Nova Refeição</CardTitle>
+              <CardTitle className="text-lg font-extrabold tracking-tight">Nova Refeição</CardTitle> 
             </CardHeader>
             <CardContent>
-              <div className="flex h-48 items-center justify-center rounded-md border border-dashed border-border bg-muted/20">
-                <span className="text-sm text-muted-foreground">[ Formulário  ]</span>
-              </div>
+              <MealForm />
             </CardContent>
           </Card>
 
+          {/* Pensar em colocar + um formulario ao inves de chumbar os suple para os toofles  */}
           <Card>
             <CardHeader>
               <CardTitle className="text-lg">Suplementação Rápida</CardTitle>
