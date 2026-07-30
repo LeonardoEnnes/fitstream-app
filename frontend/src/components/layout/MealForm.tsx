@@ -8,7 +8,6 @@ import {
   FieldLabel,
 } from "@/components/ui/field"
 
-0
 interface MealFormProps {
     onSuccess?: () => void;
 }
@@ -45,6 +44,8 @@ export function MealForm({ onSuccess } : MealFormProps) {
                 placeholder="Ex: Almoço" 
                 aria-invalid={!!errors.name}
                 {...register("name")}
+                required
+                autoComplete="off"
             />
             
             {errors.name && 
@@ -64,6 +65,8 @@ export function MealForm({ onSuccess } : MealFormProps) {
                     placeholder="Ex: 150" 
                     aria-invalid={!!errors.calories}
                     {...register("calories", { valueAsNumber: true })} 
+                    required
+                    autoComplete="off" // retira as recomendações de input do navegador
                 />
 
                 {errors.calories && 
@@ -78,10 +81,11 @@ export function MealForm({ onSuccess } : MealFormProps) {
                 </FieldLabel>
                 
                 <Input 
-                    placeholder="20g" 
+                    placeholder="Ex: 20" 
                     aria-invalid={!!errors.protein}
                     {...register("protein", { valueAsNumber: true })} 
                     required
+                    autoComplete="off"
                 />
 
                 {errors.protein && 
@@ -96,10 +100,13 @@ export function MealForm({ onSuccess } : MealFormProps) {
                 <FieldLabel htmlFor="input-required" className="text-sm font-light">
                     Carboidratos <span className="text-destructive">*</span>
                 </FieldLabel>
+
                 <Input 
-                    placeholder="90g" 
+                    placeholder="Ex: 90" 
                     aria-invalid={!!errors.carbs}
                     {...register("carbs", { valueAsNumber: true })} 
+                    required
+                    autoComplete="off"
                 />
                 
                 {errors.carbs && 
@@ -115,9 +122,11 @@ export function MealForm({ onSuccess } : MealFormProps) {
                 </FieldLabel>
 
                 <Input 
-                    placeholder="50g" 
+                    placeholder="Ex: 50" 
                     aria-invalid={!!errors.fat}
                     {...register("fat", { valueAsNumber: true })} 
+                    required
+                    autoComplete="off"
                 />
 
                 {errors.fat && 
