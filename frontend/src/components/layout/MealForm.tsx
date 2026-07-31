@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import {
   FieldLabel,
 } from "@/components/ui/field"
+import { LoaderIcon } from "lucide-react";
 
 interface MealFormProps {
     onSuccess?: () => void;
@@ -26,8 +27,11 @@ export function MealForm({ onSuccess } : MealFormProps) {
                 }
     });
 
-    const onSubmit = (data: MealFormData) => {
+    const onSubmit = async (data: MealFormData) => {
         console.log("Dados do formulário:", data); // dps apagar isso 
+        // await createMeal(data); dps
+
+        await new Promise((resolve) => setTimeout(resolve, 3000)); // simulando assincrono
 
         if (onSuccess) onSuccess();
     }
@@ -137,8 +141,17 @@ export function MealForm({ onSuccess } : MealFormProps) {
             </div>
         </div>
 
-      <Button type="submit" className="w-full bg-emerald-600 hover:bg-emerald-700 text-white" disabled={isSubmitting}>
-        {isSubmitting ? "Salvando..." : "Salvar Refeição"}
+        <Button 
+            className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
+            type="submit" 
+            disabled={isSubmitting}
+        >
+
+                {isSubmitting && (
+                    <LoaderIcon className="mr-2 h-4 w-4 animate-spin" />
+                )}
+
+            {isSubmitting ? "Salvando..." : "Salvar Refeição"}
       </Button>
     </form>
     );
