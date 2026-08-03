@@ -4,9 +4,6 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-// fazer aquele esquema de loader...
-
-// deixei uns mockados aqui -
 const defaultSupplements = [
   { id: "whey", label: "Whey Protein" },
   { id: "creatine", label: "Creatina" },
@@ -16,6 +13,7 @@ const defaultSupplements = [
 export function QuickSupplements() {
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [customItem, setCustomItem] = useState(""); // para o estado de opcional
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleToggle = (id: string) => {
     setSelectedIds((prev) =>
@@ -23,8 +21,13 @@ export function QuickSupplements() {
     );
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (selectedIds.length === 0 && !customItem.trim()) return;
+
+    setIsSubmitting(true);
+
+    // Simulando uma requisição assíncrona
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     const selectedPayload = defaultSupplements.filter((item) =>
       selectedIds.includes(item.id),
@@ -37,6 +40,7 @@ export function QuickSupplements() {
 
     setSelectedIds([]);
     setCustomItem("");
+    setIsSubmitting(false);
   };
 
   return (
@@ -80,10 +84,12 @@ export function QuickSupplements() {
         <Button
           type="button"
           onClick={handleSubmit}
-          disabled={selectedIds.length === 0 && !customItem.trim()}
+          disabled={
+            isSubmitting || (selectedIds.length === 0 && !customItem.trim())
+          }
           className="w-full bg-emerald-600 hover:bg-emerald-700 text-white h-9 text-sm"
         >
-          Registrar Suplementação
+          {isSubmitting ? "Registrando..." : "Registrar Suplementação"}
         </Button>
       </div>
     </>
