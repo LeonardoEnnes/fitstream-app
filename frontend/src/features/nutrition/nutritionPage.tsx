@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {PageHeader} from "@/components/layout/PageHeader";
 import { MealForm } from "../../components/layout/MealForm";
+import { QuickSupplements } from "@/components/layout/QuickSupplements";
 
 export function NutritionPage() {
   return (
@@ -20,21 +21,18 @@ export function NutritionPage() {
             </CardContent>
           </Card>
 
-          {/* Pensar em colocar + um formulario ao inves de chumbar os suple para os toofles  */}
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Suplementação Rápida</CardTitle>
+              <CardTitle className="text-lg font-extrabold tracking-tight">Suplementação</CardTitle>
+              <span className = "text-muted-foreground mt-1"> Registe os suplementos que você toma diariamente</span>
             </CardHeader>
             <CardContent>
-              <div className="flex h-24 items-center justify-center rounded-md border border-dashed border-border bg-muted/20">
-                <span className="text-sm text-muted-foreground">[ Toggles: Whey, Creatina ]</span>
-              </div>
+                <QuickSupplements/>
             </CardContent>
           </Card>
 
         </div>
 
-        {/* a*/}
         <div className="lg:col-span-2">
           
           <Card className="h-full">
