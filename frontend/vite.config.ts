@@ -6,11 +6,14 @@ import tailwindcss from "@tailwindcss/vite"
 export default defineConfig({
   plugins: [
     react(),
-    tailwindcss(), // injetado direto no Vite
+    tailwindcss(),
   ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+  },
+   server: {
+    allowedHosts: true, // coloquei por causa do ngrok, deixa o Vite aceitar conexões de hosts externos
   },
 })
