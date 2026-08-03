@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {PageHeader} from "@/components/layout/PageHeader";
 import { MealForm } from "../../components/layout/MealForm";
 import { QuickSupplements } from "@/components/layout/QuickSupplements";
+import { MealTable } from "./MealTable";
 
 export function NutritionPage() {
   return (
@@ -40,8 +41,8 @@ export function NutritionPage() {
               <CardTitle className="text-lg">Diário de Consumo</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="flex h-80 items-center justify-center rounded-md border border-dashed border-border bg-muted/20">
-                <span className="text-sm text-muted-foreground">[  DataTable  ]</span>
+              <div className="flex h-110 items-center justify-center rounded-md border border-dashed border-border bg-muted/20">
+                <MealTable meals={[]} onDelete={() => {}} />
               </div>
             </CardContent>
           </Card>
