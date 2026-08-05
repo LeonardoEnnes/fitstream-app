@@ -16,6 +16,8 @@ interface MealTableProps {
     onDelete: (id: string) => void; // Callback para deletar uma refeição
 }
 
+///
+
 export function MealTable({ meals, onDelete }: MealTableProps) {
     if (meals.length === 0) {
         return (

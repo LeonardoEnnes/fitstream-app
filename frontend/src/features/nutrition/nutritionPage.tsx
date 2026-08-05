@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {PageHeader} from "@/components/layout/PageHeader";
 import { MealForm } from "../../components/layout/MealForm";
 import { QuickSupplements } from "@/components/layout/QuickSupplements";
-import { MealTable } from "./MealTable";
+import { MealTable } from "../../components/layout/MealTable";
 
 export function NutritionPage() {
   return (
