@@ -1,12 +1,20 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {PageHeader} from "@/components/layout/PageHeader";
+import { PageHeader } from "@/components/layout/PageHeader";
 import { MealForm } from "../../components/layout/MealForm";
 import { QuickSupplements } from "@/components/layout/QuickSupplements";
 import { MealTable } from "../../components/layout/MealTable";
+import { useMeals } from "../../hooks/useMeals";
+import type { MealFormData } from "./schemas/mealSchema";
 
 export function NutritionPage() {
+  const { meals, isLoading, addMeal, deleteMeal } = useMeals();
+
+  // Presumindo que seu MealForm receba um prop onSuccess como o WorkoutForm
+  const handleAddMeal = async (data: MealFormData) => {
+    await addMeal(data);
+  };
+
   return (
-    <>
     <div className="space-y-6">
       <PageHeader title="Nutrição" description="Registre suas refeições e acompanhe seus macros diários." />
 
@@ -18,39 +26,40 @@ export function NutritionPage() {
               <CardTitle className="text-lg font-extrabold tracking-tight">Nova Refeição</CardTitle> 
             </CardHeader>
             <CardContent>
-              <MealForm />
+              {/* Conecte a função ao form */}
+              <MealForm onSuccess={handleAddMeal} />
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader>
               <CardTitle className="text-lg font-extrabold tracking-tight">Suplementação</CardTitle>
-              <span className = "text-muted-foreground mt-1"> Registe os suplementos que você toma diariamente</span>
+              <span className="text-muted-foreground mt-1"> Registe os suplementos que você toma diariamente</span>
             </CardHeader>
             <CardContent>
-                <QuickSupplements/>
+                <QuickSupplements />
             </CardContent>
           </Card>
-
         </div>
 
         <div className="lg:col-span-2">
-          
           <Card className="h-full">
             <CardHeader>
               <CardTitle className="text-lg">Diário de Consumo</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="flex h-110 items-center justify-center rounded-md border border-dashed border-border bg-muted/20">
-                <MealTable meals={[]} onDelete={() => {}} />
+              <div className="flex min-h-[440px] items-start justify-center rounded-md border border-dashed border-border bg-muted/20 p-4">
+                {isLoading ? (
+                  <span className="text-muted-foreground mt-10">Carregando refeições...</span>
+                ) : (
+                  <MealTable meals={meals} onDelete={deleteMeal} />
+                )}
               </div>
             </CardContent>
           </Card>
-
         </div>
         
       </div>
     </div>
-    </>
   );
 }

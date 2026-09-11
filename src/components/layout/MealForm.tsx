@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/field"
 
 interface MealFormProps {
-    onSuccess?: () => void;
+    onSuccess?: (data: MealFormData) => Promise<void> | void;
 }
 
 export function MealForm({ onSuccess } : MealFormProps) {
@@ -30,9 +30,9 @@ export function MealForm({ onSuccess } : MealFormProps) {
         console.log("Dados do formulário:", data); // dps apagar isso 
         // await createMeal(data); dps
 
-        await new Promise((resolve) => setTimeout(resolve, 3000)); // simulando assincrono
+        await new Promise((resolve) => setTimeout(resolve, 3000));
 
-        if (onSuccess) onSuccess();
+        if (onSuccess) onSuccess(data);
     }
 
     return (
