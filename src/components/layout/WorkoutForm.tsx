@@ -14,7 +14,7 @@ export function WorkoutForm({ onSuccess }: WorkoutFormProps) {
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
-  } = useForm<WorkoutFormData>({
+  } = useForm({
     resolver: zodResolver(workoutSchema),
     defaultValues: {
       exercise: "",
@@ -24,8 +24,8 @@ export function WorkoutForm({ onSuccess }: WorkoutFormProps) {
     },
   });
 
-  const onSubmit = (data: WorkoutFormData) => {
-    if (onSuccess) onSuccess(data);
+  const onSubmit = (data: any) => {
+    if (onSuccess) onSuccess(data as WorkoutFormData);
     reset();
   };
 
