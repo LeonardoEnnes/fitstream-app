@@ -2,8 +2,15 @@ import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PageHeader } from "../../components/layout/PageHeader";
 import { API_URL } from "@/lib/api";
-import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import { useLiveFeed } from "@/context /LiveFeedContext";
+import {
+  Area,
+  AreaChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
+import { useLiveFeed } from "@/context/LiveFeedContext";
 
 interface TimelinePoint {
   time: string;
@@ -23,7 +30,7 @@ export function Dashboard() {
   const [summary, setSummary] = useState<DashboardSummary | null>(null);
   const [error, setError] = useState<string | null>(null);
   const { liveFeed } = useLiveFeed();
-  
+
   useEffect(() => {
     const fetchSummary = async () => {
       try {
@@ -42,14 +49,19 @@ export function Dashboard() {
 
   return (
     <div className="space-y-8">
-      <PageHeader title="Dashboard" description="Visão geral do seu progresso e estatísticas em tempo real." />
+      <PageHeader
+        title="Dashboard"
+        description="Visão geral do seu progresso e estatísticas em tempo real."
+      />
 
       {error && <div className="text-red-500 font-medium">{error}</div>}
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Calorias Consumidas</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              Calorias Consumidas
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
@@ -60,7 +72,7 @@ export function Dashboard() {
             </p>
           </CardContent>
         </Card>
-        
+
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Proteínas</CardTitle>
@@ -102,20 +114,51 @@ export function Dashboard() {
           </CardHeader>
           <CardContent className="flex-1 min-h-0 pb-4">
             <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={summary?.timeline || []} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+              <AreaChart
+                data={summary?.timeline || []}
+                margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
+              >
                 <defs>
-                  <linearGradient id="colorCalories" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.3}/>
-                    <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
+                  <linearGradient
+                    id="colorCalories"
+                    x1="0"
+                    y1="0"
+                    x2="0"
+                    y2="1"
+                  >
+                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.3} />
+                    <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
                   </linearGradient>
                 </defs>
-                <XAxis dataKey="time" axisLine={false} tickLine={false} tick={{ fontSize: 12 }} dy={10} />
-                <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12 }} />
-                <Tooltip 
-                  contentStyle={{ backgroundColor: '#18181b', borderColor: '#27272a', borderRadius: '8px', color: '#fff' }}
-                  itemStyle={{ color: '#10b981' }}
+                <XAxis
+                  dataKey="time"
+                  axisLine={false}
+                  tickLine={false}
+                  tick={{ fontSize: 12 }}
+                  dy={10}
                 />
-                <Area type="monotone" dataKey="calories" stroke="#10b981" strokeWidth={3} fillOpacity={1} fill="url(#colorCalories)" />
+                <YAxis
+                  axisLine={false}
+                  tickLine={false}
+                  tick={{ fontSize: 12 }}
+                />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: "#18181b",
+                    borderColor: "#27272a",
+                    borderRadius: "8px",
+                    color: "#fff",
+                  }}
+                  itemStyle={{ color: "#10b981" }}
+                />
+                <Area
+                  type="monotone"
+                  dataKey="calories"
+                  stroke="#10b981"
+                  strokeWidth={3}
+                  fillOpacity={1}
+                  fill="url(#colorCalories)"
+                />
               </AreaChart>
             </ResponsiveContainer>
           </CardContent>
@@ -133,9 +176,16 @@ export function Dashboard() {
               </div>
             ) : (
               liveFeed.map((event) => (
-                <div key={event.id} className="text-sm border-b border-border pb-2 last:border-0">
-                  <span className="block font-semibold text-foreground">{event.type}</span>
-                  <span className="block text-muted-foreground">{event.message}</span>
+                <div
+                  key={event.id}
+                  className="text-sm border-b border-border pb-2 last:border-0"
+                >
+                  <span className="block font-semibold text-foreground">
+                    {event.type}
+                  </span>
+                  <span className="block text-muted-foreground">
+                    {event.message}
+                  </span>
                   <span className="block text-xs text-muted-foreground/70 mt-1">
                     {new Date(event.timestamp).toLocaleTimeString()}
                   </span>
