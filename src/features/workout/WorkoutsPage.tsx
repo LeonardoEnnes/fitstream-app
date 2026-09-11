@@ -1,26 +1,15 @@
-import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { WorkoutForm } from "../../components/layout/WorkoutForm";
-import { WorkoutTable, type WorkoutItem } from "../../components/layout/WorkoutTable";
+import { WorkoutTable } from "../../components/layout/WorkoutTable";
+import { useWorkouts } from "../../hooks/useWorkouts";
 import type { WorkoutFormData } from "./schemas/workoutSchema";
 
 export function WorkoutsPage() {
-  const [workouts, setWorkouts] = useState<WorkoutItem[]>([ // deixei de exemplo, depois vou remover
-    { id: "1", exercise: "Supino Reto", sets: 4, reps: 10, weight: 80 },
-    { id: "2", exercise: "Desenvolvimento com Halteres", sets: 3, reps: 12, weight: 24 },
-  ]);
+  const { workouts, isLoading, addWorkout, deleteWorkout, completeWorkout, updateWorkout } = useWorkouts();
 
-  const handleAddWorkout = (data: WorkoutFormData) => {
-    const newItem: WorkoutItem = {
-      id: crypto.randomUUID(),
-      ...data,
-    };
-    setWorkouts((prev) => [...prev, newItem]);
-  };
-
-  const handleDeleteWorkout = (id: string) => {
-    setWorkouts((prev) => prev.filter((item) => item.id !== id));
+  const handleAddWorkout = async (data: WorkoutFormData) => {
+    await addWorkout(data);
   };
 
   return (
@@ -45,7 +34,16 @@ export function WorkoutsPage() {
               <CardTitle className="text-lg">Registro de Treino de Hoje</CardTitle>
             </CardHeader>
             <CardContent>
-              <WorkoutTable workouts={workouts} onDelete={handleDeleteWorkout} />
+              {isLoading ? (
+                <div className="flex justify-center text-muted-foreground p-4">Carregando treinos...</div>
+              ) : (
+                <WorkoutTable 
+                  workouts={workouts} 
+                  onDelete={deleteWorkout} 
+                  onComplete={completeWorkout}
+                  onEdit={updateWorkout}
+                />
+              )}
             </CardContent>
           </Card>
         </div>

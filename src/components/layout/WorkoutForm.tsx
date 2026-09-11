@@ -25,13 +25,12 @@ export function WorkoutForm({ onSuccess }: WorkoutFormProps) {
   });
 
   const onSubmit = (data: WorkoutFormData) => {
-    console.log("Exercício cadastrado:", data);
     if (onSuccess) onSuccess(data);
     reset();
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit  )} className="space-y-4">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       <div className="space-y-1.5">
         <label className="text-sm font-medium leading-none">Exercício</label>
         <Input placeholder="Ex: Supino Reto" {...register("exercise")} />
