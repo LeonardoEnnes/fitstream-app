@@ -27,7 +27,7 @@ export function LiveFeedProvider({ children }: { children: ReactNode }) {
           const updatedFeed = [newEvent, ...prevFeed];
           return updatedFeed.slice(0, 10);
         });
-      } catch (parseError) {
+      } catch {
         console.error("Payload SSE malformado ignorado:", event.data);
       }
     };
