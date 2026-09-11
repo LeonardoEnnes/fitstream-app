@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PageHeader } from "../../components/layout/PageHeader";
 import { API_URL } from "@/lib/api";
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { useLiveFeed } from "@/context /LiveFeedContext";
 
 interface TimelinePoint {
   time: string;
@@ -18,25 +19,11 @@ interface DashboardSummary {
   timeline: TimelinePoint[];
 }
 
-interface LiveEvent {
-  id: string;
-  timestamp: string;
-  type: string;
-  message: string;
-}
-
-const mockTimelineData = [
-  { time: "08:00", calories: 450 },
-  { time: "12:00", calories: 800 },
-  { time: "16:00", calories: 250 },
-  { time: "20:00", calories: 350 },
-];
-
 export function Dashboard() {
   const [summary, setSummary] = useState<DashboardSummary | null>(null);
-  const [liveFeed, setLiveFeed] = useState<LiveEvent[]>([]);
   const [error, setError] = useState<string | null>(null);
-
+  const { liveFeed } = useLiveFeed();
+  
   useEffect(() => {
     const fetchSummary = async () => {
       try {
@@ -51,30 +38,6 @@ export function Dashboard() {
     };
 
     fetchSummary();
-  }, []);
-
-  useEffect(() => {
-    const eventSource = new EventSource(`${API_URL}/dashboard/live-feed`);
-
-    eventSource.onmessage = (event) => {
-      try {
-        const newEvent: LiveEvent = JSON.parse(event.data);
-        setLiveFeed((prevFeed) => {
-          const updatedFeed = [newEvent, ...prevFeed];
-          return updatedFeed.slice(0, 10);
-        });
-      } catch (parseError) {
-        console.error("Payload SSE malformado ignorado:", event.data);
-      }
-    };
-
-    eventSource.onerror = () => {
-      console.error("Conexão com o Live Feed perdida. O navegador tentará reconectar.");
-    };
-
-    return () => {
-      eventSource.close();
-    };
   }, []);
 
   return (
@@ -161,7 +124,7 @@ export function Dashboard() {
         <Card className="col-span-3 md:col-span-2 h-[400px] border-l-4 border-l-emerald-500 overflow-hidden flex flex-col">
           <CardHeader className="pb-2">
             <CardTitle>Eventos em Tempo Real</CardTitle>
-            <p className="text-xs text-muted-foreground">Live Feed (Kafka)</p>
+            <p className="text-xs text-muted-foreground">Live Feed Global</p>
           </CardHeader>
           <CardContent className="flex-1 overflow-y-auto px-4 py-2 space-y-3">
             {liveFeed.length === 0 ? (

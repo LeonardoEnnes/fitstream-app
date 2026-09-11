@@ -27,7 +27,7 @@ export function MealForm({ onSuccess } : MealFormProps) {
     });
 
     const onSubmit = async (data: MealFormData) => {
-        console.log("Dados do formulário:", data); // dps apagar isso 
+        // console.log("Dados do formulário:", data); // dps apagar isso 
         // await createMeal(data); dps
 
         await new Promise((resolve) => setTimeout(resolve, 3000));

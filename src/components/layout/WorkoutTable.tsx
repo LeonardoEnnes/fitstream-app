@@ -22,7 +22,6 @@ interface WorkoutTableProps {
 }
 
 export function WorkoutTable({ workouts, onDelete, onComplete, onEdit }: WorkoutTableProps) {
-  // Estados para controlar a edição inline
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editData, setEditData] = useState<WorkoutFormData | null>(null);
 
@@ -35,7 +34,6 @@ export function WorkoutTable({ workouts, onDelete, onComplete, onEdit }: Workout
     );
   }
 
-  // Ativa o modo de edição carregando os dados da linha
   const handleEditClick = (item: WorkoutItem) => {
     setEditingId(item.id);
     setEditData({
@@ -46,7 +44,6 @@ export function WorkoutTable({ workouts, onDelete, onComplete, onEdit }: Workout
     });
   };
 
-  // Dispara a mutação do Hook e fecha a edição
   const handleSave = (id: string) => {
     if (onEdit && editData) {
       onEdit(id, editData);
@@ -138,7 +135,7 @@ export function WorkoutTable({ workouts, onDelete, onComplete, onEdit }: Workout
                         variant="ghost"
                         size="icon"
                         onClick={() => {
-                          console.log(">>> Botão de concluir clicado para o ID:", item.id);
+                          // console.log(">>> Botão de concluir clicado para o ID:", item.id);
                           onComplete(item.id);
                         }}
                         className="h-8 w-8 text-emerald-600 hover:text-emerald-700 hover:bg-emerald-100 transition-colors"
