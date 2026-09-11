@@ -40,7 +40,10 @@ export function useMeals() {
     try {
       const payload = {
         name: data.name,
-        description: `Cal: ${data.calories} | P: ${data.protein}g | C: ${data.carbs}g | G: ${data.fat}g`,
+        calories: data.calories,
+        protein: data.protein,
+        carbs: data.carbs,
+        fat: data.fat
       };
 
       const response = await fetch(`${API_URL}/meals`, {
@@ -51,17 +54,7 @@ export function useMeals() {
 
       if (response.ok) {
         const newMeal = await response.json();
-        const mealWithMacros: MealItem = {
-          id: newMeal.id,
-          name: newMeal.name,
-          description: newMeal.description,
-          calories: data.calories,
-          protein: data.protein,
-          carbs: data.carbs,
-          fat: data.fat,
-          consumedAt: newMeal.consumedAt || new Date().toISOString()
-        };
-        setMeals((prev) => [...prev, mealWithMacros]);
+        setMeals((prev) => [...prev, newMeal]);
       }
     } catch (error) {
       console.error("Falha ao salvar refeição:", error);

@@ -9,7 +9,6 @@ import type { MealFormData } from "./schemas/mealSchema";
 export function NutritionPage() {
   const { meals, isLoading, addMeal, deleteMeal } = useMeals();
 
-  // Presumindo que seu MealForm receba um prop onSuccess como o WorkoutForm
   const handleAddMeal = async (data: MealFormData) => {
     await addMeal(data);
   };
@@ -26,7 +25,6 @@ export function NutritionPage() {
               <CardTitle className="text-lg font-extrabold tracking-tight">Nova Refeição</CardTitle> 
             </CardHeader>
             <CardContent>
-              {/* Conecte a função ao form */}
               <MealForm onSuccess={handleAddMeal} />
             </CardContent>
           </Card>
