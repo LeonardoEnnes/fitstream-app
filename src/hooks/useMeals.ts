@@ -2,7 +2,6 @@ import { useState, useEffect, useCallback } from "react";
 import { API_URL } from "@/lib/api";
 import type { MealFormData } from "../features/nutrition/schemas/mealSchema";
 
-// Alinhado com a tipagem exigida pelo MealTable
 export interface MealItem {
   id: string;
   name: string;
@@ -24,7 +23,6 @@ export function useMeals() {
       const response = await fetch(`${API_URL}/meals`);
       if (response.ok) {
         const data = await response.json();
-        // Mapeia caso o backend retorne dados estruturados ligeiramente diferente
         setMeals(data);
       }
     } catch (error) {
@@ -53,7 +51,6 @@ export function useMeals() {
 
       if (response.ok) {
         const newMeal = await response.json();
-        // Adiciona o item normalizado com os macros informados no form
         const mealWithMacros: MealItem = {
           id: newMeal.id,
           name: newMeal.name,
