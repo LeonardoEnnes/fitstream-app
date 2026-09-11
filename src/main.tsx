@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { AppLayout } from "./components/layout/AppLayout";
 import "./app/styles/index.css";
+
 import { BrowserRouter } from "react-router-dom";
 import { AppRoutes } from "./app/routes/AppRoutes";
 import { LiveFeedProvider } from "./context/LiveFeedContext";
