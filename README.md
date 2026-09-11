@@ -1,75 +1,85 @@
-# React + TypeScript + Vite
+[![React](https://img.shields.io/badge/React-19-61DAFB.svg?logo=react&logoColor=white)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-7-646CFF.svg?logo=vite&logoColor=white)](https://vite.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6.svg?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4.svg?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![Vitest](https://img.shields.io/badge/Vitest-Enabled-6E9F18.svg?logo=vitest&logoColor=white)](https://vitest.dev/)
+[![ESLint](https://img.shields.io/badge/ESLint-Enabled-4B32C3.svg?logo=eslint&logoColor=white)](https://eslint.org/)
+[![Prettier](https://img.shields.io/badge/Prettier-Enabled-F7B93E.svg?logo=prettier&logoColor=white)](https://prettier.io/)
+[![CI](https://img.shields.io/badge/CI-GitHub_Actions-2088FF.svg?logo=githubactions&logoColor=white)](https://github.com/)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### FitStream - Real-Time Fitness & Nutrition Dashboard
 
-Currently, two official plugins are available:
+FitStream é uma aplicação web de monitoramento de fitness e nutrição em tempo real.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+O front-end consome dados via REST e recebe atualizações instantâneas de eventos através de Server-Sent Events (SSE), integrados a uma arquitetura orientada a eventos no back-end.
 
-## React Compiler
+---
+### 🎥 Demonstração
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+![Demonstração da Aplicação](./src/app/assets/Demo.gif)
 
-## Expanding the ESLint configuration
+---
+### 🛠️ Tecnologias Utilizadas
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Core:** React, Vite, TypeScript
+- **Estilização:** Tailwind CSS, Shadcn, Radix/Base UI, Lucide Icons
+- **Gráficos e Visualização:** Recharts
+- **Gerenciamento de Estado & Formulários:** React Hook Form, Zod
+- **Comunicação em Tempo Real:** Server-Sent Events (SSE)
+- **Testes:** Vitest, JSDOM, React Testing Library
+- **Qualidade de Código:** ESLint, Prettier
+- **CI/CD:** GitHub Actions
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Backend & Frontend
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Este repositório contém exclusivamente o Front-end da aplicação.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+[Repostiorio do Backend](https://github.com/LeonardoEnnes/fitstream-api) 
 
+### 🚀 Como Acessar e Executar a Aplicação Localmente
+
+### 📋 Pré-requisitos
+
+- Node.js (versão 20 ou superior recomendada)
+- pnpm
+
+---
+### 🔧 Passo a Passo
+
+**1. Instale as dependências:**
+
+```bash
+pnpm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+**2. Inicie o servidor de desenvolvimento:**
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+pnpm dev
+```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+**3. Acesse a aplicação através de:**
 
+```text
+http://localhost:5173
+```
+
+### Comandos Úteis da CLI
+
+**Rodar os testes unitários:**
+
+```bash
+pnpm test
+```
+
+**Validar tipos e gerar o build de produção:**
+
+```bash
+pnpm build
+```
+
+**Executar o linter:**
+
+```bash
+pnpm lint
 ```
